@@ -1,0 +1,13 @@
+ <mat-form-field appearance="fill">
+  <mat-label>Ubicación</mat-label>
+    <input matInput placeholder="ubicación" [(ngModel)]="location">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="consultarClima()">Consultar clima</button>
+    <mat-list>
+      <mat-list-item *ngFor="let day of ['Martes','Miércoles','Jueves','Viernes','Sábado']">
+        <mat-icon matListIcon>circle</mat-icon>
+        <h4 matLine>{{day}}</h4>
+        <p matLine>24° / 12°</p>
+      </mat-list-item>
+    </mat-list>

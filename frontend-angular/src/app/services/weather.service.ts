@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class WeatherService {
+  getWeeklyForecast(codigo: string) {
+    throw new Error('Method not implemented.');
+  }
   private http = inject(HttpClient);
   private baseUrl = 'http://localhost:8080/api/weather'; // cambia según tu backend
 
