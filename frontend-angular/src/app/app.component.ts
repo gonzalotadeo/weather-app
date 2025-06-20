@@ -1,20 +1,57 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { WeatherHeaderComponent } from './weather-header/weather-header.component';
-import { WeatherHourlyComponent } from './weather-hourly/weather-hourly.component';
-import { WeatherExtraComponent } from './weather-extra/weather-extra.component';
-import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
-
-
+import { HttpClient, provideHttpClient } from '@angular/common/http';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule} from '@angular/forms';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, WeatherHeaderComponent, WeatherHourlyComponent, WeatherExtraComponent, WeatherForecastComponent],
-  standalone: true,
+  imports: [RouterOutlet,FormsModule, MatFormFieldModule, MatInputModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrl: './app.component.css',
+  standalone: true,
 })
+
 export class AppComponent {
   title = 'frontend-angular';
+  data: any;
+  ciudad: string = '';
+
+   constructor(private http: HttpClient){}
+   
+   enviarCiudad(){
+   const url = 'http://localhost:8080/api/weather/ciudad'; //esta función recoge el valor del textfield y lo manda al backend.
+     const body = { ciudad: this.ciudad };
+
+     this.http.post(url, body).subscribe((response) => {
+        console.log('Respuesta del backend:', response);
+      },
+      (error) => {
+        console.error('Error al enviar ciudad:', error);
+      });}
+
+
+   ngOnInit() {this.http.get('http://localhost:8080/api/weather/forecast') //de inicio se ejecuta esta función con llamada a la api. es de demo.
+    .subscribe((response: any) => {
+      this.data=response;
+      console.log(this.data);
+      
+});
+
+
+  } obtenerPrevision() { 
+    const urlGet = 'http://localhost:8080/api/weather/forecast';
+    this.http.get(urlGet).subscribe({
+      next: (response: any) => {
+        this.data = response;
+        console.log('Previsión recibida:', this.data);
+      },
+      error: err => {
+        console.error('Error al obtener la previsión:', err);
+      }
+    });
+  }
 }
+

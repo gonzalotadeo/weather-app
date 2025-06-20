@@ -4,6 +4,7 @@ import com.weatherapp.weather_backend.dto.WeatherDayDTO;
 import com.weatherapp.weather_backend.service.WeatherAPIService;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,11 @@ public class WeatherAPIController {
 public List<WeatherDayDTO> getWeatherForecast(){
     return weatherAPIService.getSimplifiedForecast(WeatherAPIService.localizacion);
 }
-    
+    @PostMapping("/ciudad")
+public void setCiudad(@RequestBody Map<String, String> payload) {
+    String nuevaCiudad = payload.get("ciudad");
+    WeatherAPIService.localizacion = nuevaCiudad;
+    System.out.println("Ciudad actualizada a: " + nuevaCiudad);
+}
 
 }

@@ -1,5 +1,22 @@
-<app-weather-header></app-weather-header>
-<app-weather-hourly></app-weather-hourly>
-<app-weather-forecast></app-weather-forecast>
-<app-weather-extra></app-weather-extra>
-<router-outlet></router-outlet>
+<form class="textfield-ciudad" (ngSubmit)="enviarCiudad()">
+  <mat-form-field class="textfield-ciudad-full-width">
+    <mat-label>Localización</mat-label>
+    <input
+      matInput
+      [(ngModel)]="ciudad"
+      name="ciudad"
+      maxlength="256"
+      placeholder="Introduce ciudad"
+    />
+  </mat-form-field>
+
+  <section>
+    <button mat-raised-button color="primary" type="submit">Enviar</button>
+  </section>
+</form>
+
+
+<div *ngIf="data">
+  <h3>Resultado del backend:</h3>
+  <pre>{{ data | json }}</pre>
+</div>
