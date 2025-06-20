@@ -25,12 +25,14 @@ export class AppComponent {
    const url = 'http://localhost:8080/api/weather/ciudad'; //esta función recoge el valor del textfield y lo manda al backend.
      const body = { ciudad: this.ciudad };
 
-     this.http.post(url, body).subscribe((response) => {
-        console.log('Respuesta del backend:', response);
-      },
-      (error) => {
-        console.error('Error al enviar ciudad:', error);
-      });}
+     this.http.post(url, body).subscribe(
+    () => {
+      console.log('Ciudad actualizada, obteniendo nueva previsión...');
+      this.obtenerPrevision(); // Llamamos de nuevo a /forecast con la ciudad actualizada
+    },
+    (error) => {
+      console.error('Error al enviar ciudad:', error);
+    });}
 
 
    ngOnInit() {this.http.get('http://localhost:8080/api/weather/forecast') //de inicio se ejecuta esta función con llamada a la api. es de demo.

@@ -11,12 +11,8 @@
   </mat-form-field>
 
   <section>
-    <button mat-raised-button color="primary" type="submit">Enviar</button>
+    <button mat-raised-button color="primary" type="submit" (click)="enviarCiudad()">Enviar</button>
   </section>
 </form>
 
 
-<div *ngIf="data">
-  <h3>Resultado del backend:</h3>
-  <pre>{{ data | json }}</pre>
-</div>
