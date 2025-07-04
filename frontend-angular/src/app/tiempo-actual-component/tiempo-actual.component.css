@@ -1,0 +1,51 @@
+
+
+.ciudad-titulo {color: white;
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 5px;;
+  
+  
+}
+
+.ciudad-titulo::first-letter {
+  text-transform: uppercase;
+}
+
+.temperatura {
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  margin-top:0px;
+  margin-bottom: 0px;
+} 
+
+.condicion{
+    font-family: roboto, sans-serif;
+    font-size: 20px;
+}
+
+.agrupador-contenido-tiempo-actual {
+  display: flex;
+  align-items: center;
+  gap: 20rem; /* espacio entre el icono y los datos */padding-left: 100px;
+  background-color: #132739;
+}
+
+.contenedor-tiempo-actual{
+    margin-left: 50px;
+    display: flex;
+    margin-top: 80px;
+}
+
+.contenedor-tiempo-actual img {
+  width: 150px; /* o el tamaño que prefieras */
+  height: 150px;
+
+}
+
+.info-tiempo {
+  display: flex;
+  flex-direction: column;
+}
+

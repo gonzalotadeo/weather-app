@@ -1,0 +1,12 @@
+<div class="contenedor-tiempo-actual">
+  
+  <div class="agrupador-contenido-tiempo-actual"> 
+  <div class="info-tiempo">
+    <h2 class="ciudad-titulo">{{ ciudad }}</h2>
+    <p class="temperatura">{{ tiempoActualData.temperatura_c }} °C</p>
+    <p class="condicion">{{condicionesClimaticasTraducidas[tiempoActualData.condicion] }}</p>
+  </div>
+<img [src]="tiempoActualData.icono" alt="Icono del tiempo">
+
+</div>
+</div>

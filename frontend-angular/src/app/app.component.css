@@ -1,16 +1,45 @@
-.textfield-ciudad {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+.main-container {
+ background-color: #0b131e;
+ height: 100vh;
+ box-sizing: border-box;
+  padding: 8px;
+ display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(8  , 1fr);
+    gap: 8px;
+    color: white;
 }
 
-.textfield-ciudad-full-width {
-  width: 100%;
+.contenedor-textfield {
+    grid-column: span 5 / span 5;
+     grid-row: span 1 / span 1;
+    max-height: 35%;
 }
 
-section {
-  display: flex;
-  align-items: center;
+.contenedor-tiempo-actual {
+    grid-column: span 5 / span 5;
+    grid-row: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 2;
+    background-color: #132739;
+   
+}
+
+.contenedor-horas {
+    grid-column: span 5 / span 5;
+    grid-row: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 5;
+    background-color: #132739;
+    
+}
+
+.contenedor-dias {
+    grid-column: span 2 / span 2;
+    grid-row: span 8 / span 8;
+    grid-column-start: 6;
+    grid-row-start: 1;
+    background-color: #132739;
 }
 
 .example-label {
@@ -23,8 +52,25 @@ section {
   margin: 8px 8px 8px 0;
 }
 
-.example-flex-container {
+.textfield-ciudad {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px; /* Espacio entre input y botón */
+  width: 100%;
+}
+
+.textfield-ciudad-full-width {
+  flex: 1;         /* Hace que el mat-form-field crezca */
+  min-width: 200px;
+  
+}
+
+
+
+.boton-oculto {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
 }

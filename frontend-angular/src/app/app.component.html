@@ -1,18 +1,55 @@
-<form class="textfield-ciudad" (ngSubmit)="enviarCiudad()">
-  <mat-form-field class="textfield-ciudad-full-width">
-    <mat-label>Localización</mat-label>
-    <input
-      matInput
-      [(ngModel)]="ciudad"
-      name="ciudad"
-      maxlength="256"
-      placeholder="Introduce ciudad"
-    />
-  </mat-form-field>
+<div class="main-container">
 
-  <section>
-    <button mat-raised-button color="primary" type="submit" (click)="enviarCiudad()">Enviar</button>
-  </section>
-</form>
+  <!-- 1. Textfield ciudad -->
+  <div class="contenedor-textfield">
+    <form class="textfield-ciudad" (ngSubmit)="enviarCiudad()">
+      <mat-form-field class="textfield-ciudad-full-width" appearance="fill">
+        <mat-label>Introduce localización</mat-label>
+        <input
+          matInput
+          [(ngModel)]="ciudad"
+          name="ciudad"
+          maxlength="40"
+          
+        />
+      </mat-form-field>
+      <button class="boton-oculto"
+        mat-raised-button
+        color="primary"
+        type="submit"
+      >
+        Enviar
+      </button>
+    </form>
+  </div>
 
+  <!-- 2. Tiempo actual -->
+   
+ <div class="contenedor-tiempo-actual">
+<app-tiempo-actual 
+  *ngIf="tiempoActualData"
+  [tiempoActualData]="tiempoActualData"
+  [ciudad]="ciudad">
+</app-tiempo-actual>
+</div>
+  <!-- 3. Previsión por horas -->
+  <div class="contenedor-horas" *ngIf="tiempoHorasData">
+    <h2>Previsión por horas</h2>
+    <ul>
+      <li *ngFor="let hora of tiempoHorasData">
+        {{ hora.time }} - {{ hora.temp_c }} °C
+      </li>
+    </ul>
+  </div>
 
+  <!-- 4. Previsión por días -->
+  <div class="contenedor-dias" *ngIf="previsionSemanaData">
+    <h2>Previsión semanal</h2>
+    <ul>
+      <li *ngFor="let dia of previsionSemanaData">
+        {{ dia.date }} - {{ dia.maxTemp }} °C
+      </li>
+    </ul>
+  </div>
+
+</div>

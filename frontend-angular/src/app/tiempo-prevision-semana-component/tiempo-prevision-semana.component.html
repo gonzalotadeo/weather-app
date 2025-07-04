@@ -1,0 +1,10 @@
+<div class="semana-container">
+  <div class="dia-card" *ngFor="let dia of dias">
+    <p class="fecha">{{ dia.date | date:'EEEE, d MMM' }}</p>
+    <img [src]="'https:' + dia.icon" [alt]="dia.condition" class="icono-clima" />
+    <p class="condicion">{{ dia.condition }}</p>
+    <p class="temp">
+      Máx: {{ dia.maxTemp }}°C / Mín: {{ dia.minTemp }}°C
+    </p>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<div *ngFor="let hora of horas">
+  <p>{{ hora.time | date: 'HH:mm' }}</p>
+  <img [src]="'https:' + hora.icon" alt="icono" />
+  <p>{{ hora.temp_c }}°C</p>
+</div>

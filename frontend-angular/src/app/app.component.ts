@@ -1,59 +1,52 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
-
-
+import { WeatherService } from './services/weather-service';
+import { tiempoActual } from './models/tiempo-actual.model';
+import { tiempoHoras } from './models/tiempo-horas.model';
+import { previsionSemana } from './models/tiempo-prevision-semana.model';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import { TiempoActualComponent } from "./tiempo-actual-component/tiempo-actual.component";
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,FormsModule, MatFormFieldModule, MatInputModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
   standalone: true,
+  imports: [FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    CommonModule, TiempoActualComponent],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 
 export class AppComponent {
-  title = 'frontend-angular';
-  data: any;
   ciudad: string = '';
+  tiempoActualData!: tiempoActual;
+  tiempoHorasData!: tiempoHoras[];
+  previsionSemanaData!: previsionSemana[];
 
-   constructor(private http: HttpClient){}
-   
-   enviarCiudad(){
-   const url = 'http://localhost:8080/api/weather/ciudad'; //esta función recoge el valor del textfield y lo manda al backend.
-     const body = { ciudad: this.ciudad };
+  constructor(private weatherService: WeatherService) {}
 
-     this.http.post(url, body).subscribe(
-    () => {
-      console.log('Ciudad actualizada, obteniendo nueva previsión...');
-      this.obtenerPrevision(); // Llamamos de nuevo a /forecast con la ciudad actualizada
-    },
-    (error) => {
-      console.error('Error al enviar ciudad:', error);
-    });}
+  enviarCiudad(): void {
+    console.log('Método enviarCiudad() ejecutado. Ciudad:', this.ciudad);
+    if (!this.ciudad) return;
 
-
-   ngOnInit() {this.http.get('http://localhost:8080/api/weather/forecast') //de inicio se ejecuta esta función con llamada a la api. es de demo.
-    .subscribe((response: any) => {
-      this.data=response;
-      console.log(this.data);
-      
+    // 1. Llamada a tiempo actual
+    this.weatherService.getTiempoActual(this.ciudad).subscribe((data: tiempoActual) => {
+  console.log('TIEMPO ACTUAL DESDE SUBSCRIBE', data);
+  this.tiempoActualData = data;
 });
 
+    // 2. Llamada a previsión por horas
+    this.weatherService.getTiempoHoras(this.ciudad).subscribe((data: tiempoHoras[]) => {
+      this.tiempoHorasData = data;
+    });
 
-  } obtenerPrevision() { 
-    const urlGet = 'http://localhost:8080/api/weather/forecast';
-    this.http.get(urlGet).subscribe({
-      next: (response: any) => {
-        this.data = response;
-        console.log('Previsión recibida:', this.data);
-      },
-      error: err => {
-        console.error('Error al obtener la previsión:', err);
-      }
+    // 3. Llamada a previsión por días (semana)
+    this.weatherService.getPrevisionSemana(this.ciudad).subscribe((data: previsionSemana[]) => {
+      this.previsionSemanaData = data;
     });
   }
 }
-
