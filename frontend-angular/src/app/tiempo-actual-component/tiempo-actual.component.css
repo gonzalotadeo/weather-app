@@ -1,10 +1,9 @@
 
 
 .ciudad-titulo {color: white;
-  font-size: 40px;
+  font-size: 60px;
   font-weight: bold;
-  margin-bottom: 5px;;
-  
+  margin-bottom: 5px;
   
 }
 
@@ -13,7 +12,8 @@
 }
 
 .temperatura {
-  font-size: 30px;
+  font-family:roboto,sans-serif;
+  font-size: 35px;
   color: white;
   font-weight: bold;
   margin-top:0px;
@@ -22,14 +22,18 @@
 
 .condicion{
     font-family: roboto, sans-serif;
-    font-size: 20px;
+    font-weight: 100;
+    font-weight: ExtraLight 200;
+    font-size: 25px;
 }
 
 .agrupador-contenido-tiempo-actual {
   display: flex;
   align-items: center;
-  gap: 20rem; /* espacio entre el icono y los datos */padding-left: 100px;
-  background-color: #132739;
+  gap: 20rem; /* espacio entre el icono y los datos */
+  padding-left: 50px;
+  padding-top:20px;
+ 
 }
 
 .contenedor-tiempo-actual{

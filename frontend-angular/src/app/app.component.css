@@ -1,13 +1,14 @@
 .main-container {
- background-color: #0b131e;
- height: 100vh;
- box-sizing: border-box;
+  width: 100vw;   /* ancho igual al viewport */
+  height: 100vh;  /* alto igual al viewport */
+  box-sizing: border-box;
   padding: 8px;
- display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(8  , 1fr);
-    gap: 8px;
-    color: white;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 8px;
+  color: white;
+
 }
 
 .contenedor-textfield {
@@ -21,7 +22,7 @@
     grid-row: span 3 / span 3;
     grid-column-start: 1;
     grid-row-start: 2;
-    background-color: #132739;
+     background-color: rgba(0, 0, 0, 0.6);
    
 }
 
@@ -30,8 +31,8 @@
     grid-row: span 3 / span 3;
     grid-column-start: 1;
     grid-row-start: 5;
-    background-color: #132739;
-    
+    background-color: rgba(0, 0, 0, 0.6);
+    scrollbar-color: rgba(0, 0, 0, 0.6) rgba(0, 0, 0, 0.6);
 }
 
 .contenedor-dias {
@@ -39,7 +40,7 @@
     grid-row: span 8 / span 8;
     grid-column-start: 6;
     grid-row-start: 1;
-    background-color: #132739;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .example-label {

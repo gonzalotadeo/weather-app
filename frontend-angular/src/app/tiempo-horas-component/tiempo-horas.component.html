@@ -1,5 +1,10 @@
-<div *ngFor="let hora of horas">
-  <p>{{ hora.time | date: 'HH:mm' }}</p>
-  <img [src]="'https:' + hora.icon" alt="icono" />
-  <p>{{ hora.temp_c }}°C</p>
-</div>
+<h2 class="titulo-horas">Previsión por horas</h2>
+<ul class="lista-horas">
+  <li *ngFor="let hora of datosHoras">
+    <div class="tarjeta-hora"> 
+    {{ acortarHora(hora.time) }}
+    <img [src]="hora.icon" alt="Icono del tiempo">
+    {{ hora.temp_c }} °C
+    </div>
+  </li>
+</ul>

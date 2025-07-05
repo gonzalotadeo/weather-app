@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="main-container" [ngStyle]="{ 'background-image': backgroundImg, 'background-size': 'cover', 'background-position': 'center' }">
 
   <!-- 1. Textfield ciudad -->
   <div class="contenedor-textfield">
@@ -34,12 +34,7 @@
 </div>
   <!-- 3. Previsión por horas -->
   <div class="contenedor-horas" *ngIf="tiempoHorasData">
-    <h2>Previsión por horas</h2>
-    <ul>
-      <li *ngFor="let hora of tiempoHorasData">
-        {{ hora.time }} - {{ hora.temp_c }} °C
-      </li>
-    </ul>
+    <app-tiempo-horas *ngIf="tiempoHorasData" [datosHoras]="tiempoHorasData"></app-tiempo-horas>
   </div>
 
   <!-- 4. Previsión por días -->

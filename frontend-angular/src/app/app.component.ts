@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { TiempoActualComponent } from "./tiempo-actual-component/tiempo-actual.component";
+import { TiempoHorasComponent } from "./tiempo-horas-component/tiempo-horas.component";
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,7 +18,7 @@ import { TiempoActualComponent } from "./tiempo-actual-component/tiempo-actual.c
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    CommonModule, TiempoActualComponent],
+    CommonModule, TiempoActualComponent, TiempoHorasComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -37,6 +39,7 @@ export class AppComponent {
     this.weatherService.getTiempoActual(this.ciudad).subscribe((data: tiempoActual) => {
   console.log('TIEMPO ACTUAL DESDE SUBSCRIBE', data);
   this.tiempoActualData = data;
+  this.actualizarFondo();
 });
 
     // 2. Llamada a previsión por horas
@@ -49,4 +52,51 @@ export class AppComponent {
       this.previsionSemanaData = data;
     });
   }
+
+  backgroundImg: string = '';
+  
+  actualizarFondo():void{
+
+    switch (this.tiempoActualData?.condicion) {
+      case "Sunny": 
+      this.backgroundImg =  "url('/soleado.jpg')";
+      break;
+    case "Clear":
+      this.backgroundImg = "url('/despejado.jpg')";
+      break;
+    case "Partly cloudy":
+      this.backgroundImg = "url('/ligeras nubes.jpg')";
+      break;
+    case "Cloudy":
+      this.backgroundImg = "url('/nublado.jpg')";
+      break;
+    case "Overcast":
+      this.backgroundImg = "url('/nublado.jpg')";
+      break;
+    case "Mist":
+      this.backgroundImg = "url('/niebla.jpg')";
+      break;
+    case "Patchy rain possible":
+      this.backgroundImg = "url('/lluvia.jpg')";
+      break;
+    case "Light rain":
+      this.backgroundImg = "url('/lluvia.jpg')";
+      break;
+    case "Heavy rain":
+      this.backgroundImg = "url('/lluvia.jpg')";
+      break;
+    case "Thunderstorm":
+      this.backgroundImg = "url('tormenta.jpg')";
+      break;
+    case "Snow":
+      this.backgroundImg = "url('/nieve.jpg')";
+      break;
+    default:
+      this.backgroundImg = "none"; 
+      break;
+    }
+  }
+
+  
 }
+

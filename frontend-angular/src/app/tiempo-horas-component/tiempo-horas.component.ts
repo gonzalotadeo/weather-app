@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { WeatherService, TiempoHora } from '../services/weather-service';
 import { CommonModule,DatePipe } from '@angular/common';
+import { time } from 'console';
 @Component({
   selector: 'app-tiempo-horas',
   templateUrl: './tiempo-horas.component.html',
 
   styleUrls: ['./tiempo-horas.component.css'],
   standalone: true,
-  imports: [CommonModule,DatePipe]
+  imports: [CommonModule]
 })
-export class TiempoHorasComponent implements OnInit {
-  horas: TiempoHora[] = [];
 
-  constructor(private weatherService: WeatherService) {}
 
- ngOnInit():void {
-    this.weatherService.getTiempoHoras('Barcelona').subscribe(data => {
-      this.horas = data;
-    });
-  }
+export class TiempoHorasComponent {
+  @Input() datosHoras: any[] = [];
+
+  acortarHora(hora:string):string{
+  return hora.split(' ')[1];
 }
+}
+
