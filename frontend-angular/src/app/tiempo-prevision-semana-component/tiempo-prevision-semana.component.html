@@ -1,10 +1,13 @@
 <div class="semana-container">
+  <h2 class="titulo-semana">Próximos días</h2>
   <div class="dia-card" *ngFor="let dia of dias">
-    <p class="fecha">{{ dia.date | date:'EEEE, d MMM' }}</p>
-    <img [src]="'https:' + dia.icon" [alt]="dia.condition" class="icono-clima" />
-    <p class="condicion">{{ dia.condition }}</p>
+    <div class="contenedor-interno-tarjeta">
+    <p class="fecha">{{ dia.date | date:'EEEE d' | titlecase }}</p>
+    <img class="icono-tiempo"[src]="'https:' + dia.icon" [alt]="dia.condition" class="icono-clima" />
+    <p class="condicion">{{ traducirCondicion(dia.condition) }}</p>
     <p class="temp">
       Máx: {{ dia.maxTemp }}°C / Mín: {{ dia.minTemp }}°C
     </p>
+    </div>
   </div>
 </div>

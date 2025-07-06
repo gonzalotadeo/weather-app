@@ -17,6 +17,8 @@ export class TiempoHorasComponent {
 
   acortarHora(hora:string):string{
   return hora.split(' ')[1];
+
+  
 }
 }
 

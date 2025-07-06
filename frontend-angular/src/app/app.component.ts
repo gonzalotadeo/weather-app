@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { TiempoActualComponent } from "./tiempo-actual-component/tiempo-actual.component";
 import { TiempoHorasComponent } from "./tiempo-horas-component/tiempo-horas.component";
+import { TiempoPrevisionSemanaComponent } from "./tiempo-prevision-semana-component/tiempo-prevision-semana.component";
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ import { TiempoHorasComponent } from "./tiempo-horas-component/tiempo-horas.comp
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    CommonModule, TiempoActualComponent, TiempoHorasComponent],
+    CommonModule, TiempoActualComponent, TiempoHorasComponent, TiempoPrevisionSemanaComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -49,7 +50,7 @@ export class AppComponent {
 
     // 3. Llamada a previsión por días (semana)
     this.weatherService.getPrevisionSemana(this.ciudad).subscribe((data: previsionSemana[]) => {
-      this.previsionSemanaData = data;
+      this.previsionSemanaData = data.slice(0, 7);
     });
   }
 
@@ -63,6 +64,9 @@ export class AppComponent {
       break;
     case "Clear":
       this.backgroundImg = "url('/despejado.jpg')";
+      break;
+      case "Patchy rain nearby":
+      this.backgroundImg = "url('/lluvia.jpg')";
       break;
     case "Partly cloudy":
       this.backgroundImg = "url('/ligeras nubes.jpg')";
@@ -96,6 +100,7 @@ export class AppComponent {
       break;
     }
   }
+
 
   
 }

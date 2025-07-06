@@ -39,12 +39,8 @@
 
   <!-- 4. Previsión por días -->
   <div class="contenedor-dias" *ngIf="previsionSemanaData">
-    <h2>Previsión semanal</h2>
-    <ul>
-      <li *ngFor="let dia of previsionSemanaData">
-        {{ dia.date }} - {{ dia.maxTemp }} °C
-      </li>
-    </ul>
-  </div>
+    <app-tiempo-prevision-semana *ngIf="previsionSemanaData" [dias]="previsionSemanaData">
+      
+    </app-tiempo-prevision-semana>
 
 </div>

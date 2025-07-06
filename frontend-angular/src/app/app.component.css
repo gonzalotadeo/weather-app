@@ -27,20 +27,22 @@
 }
 
 .contenedor-horas {
-    grid-column: span 5 / span 5;
+    grid-column: span 7 / span 7;
     grid-row: span 3 / span 3;
     grid-column-start: 1;
     grid-row-start: 5;
     background-color: rgba(0, 0, 0, 0.6);
     scrollbar-color: rgba(0, 0, 0, 0.6) rgba(0, 0, 0, 0.6);
+    margin-top: 20px;
 }
 
 .contenedor-dias {
     grid-column: span 2 / span 2;
-    grid-row: span 8 / span 8;
+    grid-row: span 3 / span 3;
     grid-column-start: 6;
-    grid-row-start: 1;
+    grid-row-start: 2;
     background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 0.5%;
 }
 
 .example-label {
@@ -66,7 +68,9 @@
   
 }
 
-
+.contenedor-textfield{
+  padding-top: 50px;;
+}
 
 .boton-oculto {
   position: absolute;

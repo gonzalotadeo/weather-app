@@ -20,6 +20,7 @@ export class TiempoActualComponent {
   "Sunny": "Soleado",
   "Clear": "Despejado",
   "Partly cloudy": "Parcialmente nublado",
+  "Patchy rain nearby": "Lluvia irregular",
   "Cloudy": "Nublado",
   "Overcast": "Cubierto",
   "Mist": "Neblina",
